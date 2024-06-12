@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 // import ExpenseItem from "./components/expenses/ExpenseItem";
 import ExpenseList from "./components/expenses/ExpenseList";
-import Greet from "./components/Greet";
+// import Greet from "./components/Greet";
 
 const App = () => {
   // 서버에서 지출항목 JSON 배열을 응답받음
@@ -23,7 +23,7 @@ const App = () => {
       date: new Date(2024, 6 - 1, 12),
     },
   ];
-
+  
   return (
     <>
       <ExpenseList expenses={expenses} />
