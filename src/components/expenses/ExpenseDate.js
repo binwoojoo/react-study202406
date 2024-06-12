@@ -20,5 +20,5 @@ const ExpenseDate = ({ exDate: date }) => {
     </div>
   );
 };
-    
+
 export default ExpenseDate;
