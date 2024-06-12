@@ -3,7 +3,6 @@ import "./App.css";
 import React from "react";
 import ExpenseItem from "./components/expenses/ExpenseItem";
 
-
 const App = () => {
   // jsx 문법
   // const $h2 = React.createElement("h2", null, "반갑노");
@@ -18,10 +17,11 @@ const App = () => {
 
   return (
     <>
-     <ExpenseItem />
-     <ExpenseItem />
+      <ExpenseItem title={"장독대집밥"} price={8000} date={new Date(2024, 6, 3)} />
+      <ExpenseItem title="맘스터치" price={6000} date={new Date(2024, 6, 7)} />
+      <ExpenseItem title="국밥" price={9000} date={new Date(2024, 6, 12)} />
     </>
   );
-}
+};
 
 export default App;
