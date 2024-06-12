@@ -1,11 +1,10 @@
 // import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
-import Bye from "./components/Bye";
-import Greet from "./components/Greet";
-import Hello from "./components/Helllo";
+import ExpenseItem from "./components/expenses/ExpenseItem";
 
-function App() {
+
+const App = () => {
   // jsx 문법
   // const $h2 = React.createElement("h2", null, "반갑노");
   // const $h2 = <h2>ㅎㅇ~!~!~!~!~</h2>;
@@ -19,9 +18,8 @@ function App() {
 
   return (
     <>
-      <Hello />
-      <Bye />
-      <Greet />
+     <ExpenseItem />
+     <ExpenseItem />
     </>
   );
 }
