@@ -24,10 +24,16 @@ const App = () => {
       date: new Date(2024, 6 - 1, 12),
     },
   ];
-  
+
+  // ExpenseForm에게 내려보낼 함수
+  const onAddExpense = (userInput) => {
+    expenses.push(userInput);
+    console.log(expenses);
+  };
+
   return (
     <>
-      <NewExpense />
+      <NewExpense onSave={onAddExpense} />
       <ExpenseList expenses={expenses} />
       {/* <Greet>
         <ul>
