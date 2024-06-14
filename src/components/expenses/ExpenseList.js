@@ -7,6 +7,7 @@ import React, { useState } from "react";
 const ExpenseList = ({ expenses }) => {
   // 선택된 연도로 재 렌더링하기 위해 연도를 상태값으로 관리
   const [year, setFilteredYear] = useState(new Date().getFullYear().toString());
+  const [month, setFilteredMonth] = useState(new Date().getMonth().toString());
 
   const onFilterChange = (year) => {
     // ExpenseFilter에 있는 연도값을 여기서 출력~!
@@ -52,7 +53,7 @@ const ExpenseList = ({ expenses }) => {
   return (
     <div className="expenses">
       <ExpenseFilter filteredYear={onFilterChange} />
-      <ExpenseChart />
+      <ExpenseChart expenses={filteredExpense} />
       {content}
     </div>
   );
