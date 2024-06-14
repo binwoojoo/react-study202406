@@ -26,7 +26,7 @@ const ExpenseItem = ({ date, title, price: exPrice }) => {
     */
     setItemTitle("짜장면");
   };
-
+  
   console.log("렌더링 전");
 
   return (
