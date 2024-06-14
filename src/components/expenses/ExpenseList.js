@@ -1,3 +1,4 @@
+import ExpenseChart from "../chart/ExpenseChart";
 import ExpenseFilter from "./ExpenseFilter";
 import ExpenseItem from "./ExpenseItem";
 import "./ExpenseList.css";
@@ -29,19 +30,30 @@ const ExpenseList = ({ expenses }) => {
   //   ));
   // };
 
+  const filteredExpense = expenses.filter(
+    (ex) => ex.date.getFullYear().toString() === year
+  );
+
+  // 지출 데이터가 없을 때 보여줄 태그
+  let content = <p>지출 항목이 없습니다.</p>;
+
+  if (filteredExpense.length > 0) {
+    // 지출 데이터가 있을 때 보여줄 태그
+    content = filteredExpense.map((ex) => (
+      <ExpenseItem
+        key={Math.random().toString()}
+        title={ex.title}
+        price={ex.price}
+        date={ex.date}
+      />
+    ));
+  }
+
   return (
     <div className="expenses">
       <ExpenseFilter filteredYear={onFilterChange} />
-      {expenses
-        .filter((ex) => ex.date.getFullYear().toString() === year)
-        .map((ex) => (
-          <ExpenseItem
-            key={Math.random().toString()}
-            title={ex.title}
-            price={ex.price}
-            date={ex.date}
-          />
-        ))}
+      <ExpenseChart />
+      {content}
     </div>
   );
 };
