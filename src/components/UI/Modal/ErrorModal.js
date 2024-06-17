@@ -1,13 +1,19 @@
-import React from "react";
+import React from 'react';
 // portal을 사용하기 위한 불러오기
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 
-import Card from "../Card";
-import Button from "../Button";
-import styles from "./ErrorModal.module.css";
+import Card from '../Card';
+import Button from '../Button';
+import styles from './ErrorModal.module.css';
+import Portal from '../Portal/Portal';
 
-const Backdrop = ({ onClose }) => {
-  return <div className={styles.backdrop} onClick={onClose} />;
+const BackDrop = ({ onClose }) => {
+  return (
+    <div
+      className={styles.backdrop}
+      onClick={onClose}
+    ></div>
+  );
 };
 
 const ModalOverlay = ({ title, message, onClose }) => {
@@ -29,14 +35,17 @@ const ModalOverlay = ({ title, message, onClose }) => {
 const ErrorModal = ({ title, message, onClose }) => {
   return (
     <>
-      {ReactDOM.createPortal(
-        <Backdrop onClose={onClose} />,
-        document.getElementById("backdrop-root")
-      )}
-      {ReactDOM.createPortal(
-        <ModalOverlay title={title} message={message} onClose={onClose} />,
-        document.getElementById("overlay-root")
-      )}
+      <Portal destId="backdrop-root">
+        <BackDrop onClose={onClose} />
+      </Portal>
+
+      <Portal destId="overlay-root">
+        <ModalOverlay
+          title={title}
+          message={message}
+          onClose={onClose}
+        />
+      </Portal>
     </>
   );
 };
