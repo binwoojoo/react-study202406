@@ -3,8 +3,15 @@ import "./App.css";
 import AddUsers from "./components/Users/AddUsers";
 import UserList from "./components/Users/UserList";
 
-
 const App = () => {
+  // 회원들이 저장될 배열
+  const [userList, setUserList] = useState([]);
+
+  const addUserHandler = (user) => {
+    console.log(user);
+    setUserList((prev) => [...prev, { ...user, id: Math.random().toString() }]);
+  };
+
   // const [goals, setGoals] = useState(DUMMY_DATA);
 
   // // CourseInput에게 전달할 함수
@@ -26,8 +33,8 @@ const App = () => {
 
   return (
     <>
-      <AddUsers />
-      <UserList />
+      <AddUsers onAddUser={addUserHandler} />
+      <UserList users={userList} />
     </>
   );
 };
