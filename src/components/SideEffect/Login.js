@@ -1,8 +1,8 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from 'react';
 
-import Card from "../UI/Card";
-import styles from "./Login.module.css";
-import Button from "../UI/Button";
+import Card from '../UI/Card';
+import styles from './Login.module.css';
+import Button from '../UI/Button';
 
 // 리듀서 함수
 /*
@@ -23,29 +23,30 @@ const emailReducer = (state, action) => {
   // console.log('state: ', state);  // 변경 전 상태객체
   // console.log('action: ', action); // 지금 상태변경이 일어난 객체
 
-  if (action.type === "USER_INPUT") {
-    return {
+  if (action.type === 'USER_INPUT') {
+    return { 
       inputValue: action.val,
-      isVaild: action.val.includes("@"),
+      isVaild: action.val.includes('@') 
     };
-  } else if (action.type === "VALIDATE") {
-    return {
+  } else if (action.type === 'VALIDATE') {
+    return { 
       inputValue: state.inputValue,
-      isVaild: state.inputValue.includes("@"),
+      isVaild: state.inputValue.includes('@') 
     };
   }
 };
 
 const passwordReducer = (state, action) => {
-  if (action.type === "USER_INPUT") {
-    return {
+
+  if (action.type === 'USER_INPUT') {
+    return { 
       inputValue: action.val,
-      isVaild: action.val.trim().length > 6,
+      isVaild: action.val.trim().length > 6
     };
-  } else if (action.type === "VALIDATE") {
-    return {
+  } else if (action.type === 'VALIDATE') {
+    return { 
       inputValue: state.inputValue,
-      isVaild: state.inputValue.trim().length > 6,
+      isVaild: state.inputValue.trim().length > 6
     };
   }
 };
@@ -62,14 +63,14 @@ const Login = ({ onLogin }) => {
         [1]: 상태를 변경할 수 있는 함수 
   */
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
-    inputValue: "",
+    inputValue: '',
     isValid: null,
   });
   // console.log('abc: ', abc);
   // console.log('변경 후 이메일상태: ', emailState);
 
   const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
-    inputValue: "",
+    inputValue: '',
     isValid: null,
   });
 
@@ -84,28 +85,31 @@ const Login = ({ onLogin }) => {
 
     // param1: 리듀서 함수의 action에 전달할 내용
     dispatchEmail({
-      type: "USER_INPUT",
-      val: e.target.value,
+      type: 'USER_INPUT',
+      val: e.target.value
     });
+
   };
 
   const passwordChangeHandler = (e) => {
+    
     dispatchPassword({
-      type: "USER_INPUT",
-      val: e.target.value,
+      type: 'USER_INPUT',
+      val: e.target.value
     });
+
   };
-  
+
   const validateEmailHandler = () => {
     // setEmailIsValid(enteredEmail.includes('@'));
     dispatchEmail({
-      type: "VALIDATE",
+      type: 'VALIDATE'
     });
   };
 
   const validatePasswordHandler = () => {
     dispatchPassword({
-      type: "VALIDATE",
+      type: 'VALIDATE'
     });
   };
 
@@ -122,8 +126,10 @@ const Login = ({ onLogin }) => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      console.log("useEffect call in Login.js");
-      setFormIsValid(emailIsValid && passwordIsValid);
+      console.log('useEffect call in Login.js');
+      setFormIsValid(
+        emailIsValid && passwordIsValid
+      );
     }, 1000);
 
     // clean up함수는 컴포넌트가 업데이트되거나 사라지기 전에 실행
@@ -139,7 +145,9 @@ const Login = ({ onLogin }) => {
     <Card className={styles.login}>
       <form onSubmit={submitHandler}>
         <div
-          className={`${styles.control} ${!emailIsValid ? styles.invalid : ""}`}
+          className={`${styles.control} ${
+            !emailIsValid ? styles.invalid : ''
+          }`}
         >
           <label htmlFor="email">E-Mail</label>
           <input
@@ -152,7 +160,7 @@ const Login = ({ onLogin }) => {
         </div>
         <div
           className={`${styles.control} ${
-            !passwordIsValid ? styles.invalid : ""
+            !passwordIsValid ? styles.invalid : ''
           }`}
         >
           <label htmlFor="password">Password</label>
@@ -165,7 +173,11 @@ const Login = ({ onLogin }) => {
           />
         </div>
         <div className={styles.actions}>
-          <Button type="submit" className={styles.btn} disabled={!formIsValid}>
+          <Button
+            type="submit"
+            className={styles.btn}
+            disabled={!formIsValid}
+          >
             Login
           </Button>
         </div>
