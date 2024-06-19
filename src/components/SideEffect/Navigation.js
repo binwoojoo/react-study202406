@@ -16,12 +16,12 @@ const Navigation = () => {
       </li>
     </>
   );
-
+  
   const anonymousPage = (
     <li>
       <button>Sign Up</button>
     </li>
-  );
+  );  
 
   const { isLoggedIn, onLogout } = useContext(AuthContext);
 
