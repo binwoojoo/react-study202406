@@ -1,20 +1,24 @@
-import React from 'react';
-import {MdDelete, MdDone} from "react-icons/md";
+import React from "react";
+import { MdDelete, MdDone } from "react-icons/md";
 
-import './scss/TodoItem.scss';
+import "./scss/TodoItem.scss";
 
-const TodoItem = ({ item }) => {
+const TodoItem = ({ item, onRemove }) => {
+  const { id, title, done } = item;
 
-  const { title, done } = item;
-
+  // 삭제 클릭 이벤트
+  const removeHandler = (e) => {
+    onRemove(id);
+  };
+  
   return (
-    <li className='todo-list-item'>
-      <div className={`check-circle ${done ? 'active' : undefined}`}>
-        {done && <MdDone/>}
+    <li className="todo-list-item">
+      <div className={`check-circle ${done ? "active" : undefined}`}>
+        {done && <MdDone />}
       </div>
-      <span className={`text ${done ? 'finish' : undefined}`}>{title}</span>
-      <div className='remove'>
-        <MdDelete/>
+      <span className={`text ${done ? "finish" : undefined}`}>{title}</span>
+      <div onClick={removeHandler} className="remove">
+        <MdDelete />
       </div>
     </li>
   );
