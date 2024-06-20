@@ -1,32 +1,20 @@
-import React, { useState } from "react";
-import { MdDelete, MdDone } from "react-icons/md";
-import "./scss/TodoItem.scss";
+import React from 'react';
+import {MdDelete, MdDone} from "react-icons/md";
 
-const TodoItem = ({ id, text, onDelete }) => {
-    
-  const [checkItem, setCheckItem] = useState(false);
+import './scss/TodoItem.scss';
 
-  const clickHandler = () => {
-    setCheckItem(!checkItem);
-  };
+const TodoItem = ({ item }) => {
 
-  const deleteHandler = () => {
-    onDelete(id);
-  };
+  const { title, done } = item;
 
   return (
-    <li className="todo-list-item">
-      <div
-        onClick={clickHandler}
-        className={`check-circle ${checkItem ? "active" : ""}`}
-      >
-        <MdDone />
+    <li className='todo-list-item'>
+      <div className={`check-circle ${done ? 'active' : undefined}`}>
+        {done && <MdDone/>}
       </div>
-      <span className={`text ${checkItem ? "finish" : ""}`}>
-        {text}
-      </span>
-      <div onClick={deleteHandler} className="remove">
-        <MdDelete />
+      <span className={`text ${done ? 'finish' : undefined}`}>{title}</span>
+      <div className='remove'>
+        <MdDelete/>
       </div>
     </li>
   );
