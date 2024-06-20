@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import ResultModal from './ResultModal';
+import React, { useRef, useState } from "react";
+import ResultModal from "./ResultModal";
 
 const TimerChallenge = ({ title, targetTime }) => {
   // timer를 ref변수로 관리
@@ -31,26 +31,29 @@ const TimerChallenge = ({ title, targetTime }) => {
     dialog.current.showModal();
   };
 
+  // 남은 시간 리셋 함수
+  const resetHandler = () => setTimeRemaining(targetTime * 1000);
+
   return (
     <>
       <ResultModal
         ref={dialog}
         targetTime={targetTime}
         remainingTime={timeRemaining}
-        result="lost"
+        onReset={resetHandler}
       />
       <section className="challenge">
         <h2>{title}</h2>
         <p className="challenge-time">
-          {targetTime} second{targetTime > 1 ? 's' : ''}
+          {targetTime} second{targetTime > 1 ? "s" : ""}
         </p>
         <p>
           <button onClick={timerIsActive ? stopHandler : startHandler}>
-            {timerIsActive ? 'Stop' : 'Start'} Challenge
+            {timerIsActive ? "Stop" : "Start"} Challenge
           </button>
         </p>
-        <p className={timerIsActive ? 'active' : undefined}>
-          {timerIsActive ? 'Time is running...' : 'Timer inactive'}
+        <p className={timerIsActive ? "active" : undefined}>
+          {timerIsActive ? "Time is running..." : "Timer inactive"}
         </p>
       </section>
     </>
