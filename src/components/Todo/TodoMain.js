@@ -1,18 +1,36 @@
-import React from "react";
-
-import "./scss/TodoMain.scss";
+import React, { useState } from "react";
+import TodoInput from "./TodoInput";
 import TodoItem from "./TodoItem";
+import "./scss/TodoMain.scss";
 
-const TodoMain = () => {
+const TodoMain = ({ getTodo }) => {
 
-  const removeHandler = (e) => {
-    console.log('씨발');
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = (text) => {
+    const newTodo = { id: Date.now(), text };
+    setTodos([...todos, newTodo]);
   };
 
+  const removeHandler = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  getTodo(todos);
   return (
-    <ul className="todo-list">
-      <TodoItem onDelete={removeHandler} />
-    </ul>
+    <div>
+      <TodoInput onAddTodo={addTodo} />
+      <ul className="todo-list">
+        {todos.map((todo) => (
+          <TodoItem
+            key={todo.id}
+            id={todo.id}
+            text={todo.text}
+            onDelete={removeHandler}
+          />
+        ))}
+      </ul>
+    </div>
   );
 };
 

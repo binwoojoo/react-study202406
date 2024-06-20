@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { MdAdd } from "react-icons/md";
 import "./scss/TodoInput.scss";
 
-const TodoInput = ({ onAdd }) => {
-
+const TodoInput = ({ onAddTodo }) => {
+    
   const [userInput, setUserInput] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
@@ -19,8 +19,9 @@ const TodoInput = ({ onAdd }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue.trim()) {
-      onAdd(inputValue.trim());
-      setInputValue(""); // 입력 필드 초기화
+      console.log(typeof onAddTodo); 
+      onAddTodo(inputValue.trim());
+      setInputValue("");
     }
   };
 

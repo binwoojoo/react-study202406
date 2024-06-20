@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { MdDelete, MdDone } from "react-icons/md";
 import "./scss/TodoItem.scss";
 
-const TodoItem = ({ onDelete }) => {
+const TodoItem = ({ id, text, onDelete }) => {
+    
   const [checkItem, setCheckItem] = useState(false);
 
-  const clickHandler = (e) => {
+  const clickHandler = () => {
     setCheckItem(!checkItem);
   };
-  
+
+  const deleteHandler = () => {
+    onDelete(id);
+  };
+
   return (
     <li className="todo-list-item">
       <div
@@ -18,9 +23,9 @@ const TodoItem = ({ onDelete }) => {
         <MdDone />
       </div>
       <span className={`text ${checkItem ? "finish" : ""}`}>
-        할 일 어쩌구~~
+        {text}
       </span>
-      <div onClick={onDelete} className="remove">
+      <div onClick={deleteHandler} className="remove">
         <MdDelete />
       </div>
     </li>
