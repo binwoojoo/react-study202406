@@ -23,6 +23,7 @@ const TodoInput = ({ onAdd }) => {
     setOpen(false);
   };
 
+
   return (
     <>
       {open && (
