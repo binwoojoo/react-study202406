@@ -1,27 +1,25 @@
-import React, { useContext } from 'react';
+import React, { useContext } from "react";
 
-import styles from './CartItem.module.scss';
+import styles from "./CartItem.module.scss";
 
-import CartContext from '../../../store/cart-context';
+import CartContext from "../../../store/cart-context";
 
 const CartItem = ({ cart }) => {
+  const { addItem, removeItem } = useContext(CartContext);
 
-  const { addItem } = useContext(CartContext);
-
-  const { name, price, amount } = cart;
+  const { id, name, price, amount } = cart;
 
   const {
-    'cart-item': cartItem,
+    "cart-item": cartItem,
     summary,
     price: priceStyle,
     amount: amountStyle,
-    actions
+    actions,
   } = styles;
-  
-  const formatPrice = new Intl.NumberFormat('ko-KR').format(price);
 
-  const cartAddHandler = e => {
+  const formatPrice = new Intl.NumberFormat("ko-KR").format(price);
 
+  const cartAddHandler = (e) => {
     // 장바구니에 보낼 객체
     const item = {
       ...cart,
@@ -29,6 +27,10 @@ const CartItem = ({ cart }) => {
     };
 
     addItem(item);
+  };
+
+  const cartRemoveHandler = (e) => {
+    removeItem(id);
   };
 
   return (
@@ -41,7 +43,7 @@ const CartItem = ({ cart }) => {
         </div>
       </div>
       <div className={actions}>
-        <button>−</button>
+        <button onClick={cartRemoveHandler}>−</button>
         <button onClick={cartAddHandler}>+</button>
       </div>
     </li>
