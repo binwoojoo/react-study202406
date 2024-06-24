@@ -59,7 +59,6 @@ const AddUsers = ({ onAddUser }) => {
       });
       return;
     }
-
     onAddUser(userValue);
 
     usernameRef.current.value = '';

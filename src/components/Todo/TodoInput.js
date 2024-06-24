@@ -1,9 +1,10 @@
-import React, { useRef, useState } from "react";
-import { MdAdd } from "react-icons/md";
+import React, { useRef, useState } from 'react';
+import { MdAdd } from 'react-icons/md';
 
-import "./scss/TodoInput.scss";
+import './scss/TodoInput.scss';
 
 const TodoInput = ({ onAdd }) => {
+
   // input의 주소값을 기억하는 변수 생성
   const $textInput = useRef();
 
@@ -11,18 +12,15 @@ const TodoInput = ({ onAdd }) => {
   const [open, setOpen] = useState(false);
 
   // 버튼 토글링 함수
-  const onToggle = () => setOpen((prevOpen) => !prevOpen);
+  const onToggle = () => setOpen(prevOpen => !prevOpen);
 
-  const submitHandler = (e) => {
+  const submitHandler = e => {
     e.preventDefault();
-
     onAdd($textInput.current.value);
-
-    $textInput.current.value = "";
-    
+    // form이 제출되면 입력창 비우기
+    $textInput.current.value = '';
     setOpen(false);
   };
-
 
   return (
     <>
@@ -39,7 +37,7 @@ const TodoInput = ({ onAdd }) => {
       )}
 
       <button
-        className={`insert-btn ${open ? "open" : undefined}`}
+        className={`insert-btn ${open ? 'open' : undefined}`}
         onClick={onToggle}
       >
         <MdAdd />

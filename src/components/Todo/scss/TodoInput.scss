@@ -1,3 +1,5 @@
+
+
 .form-wrapper {
   width: 100%;
   position: absolute;
@@ -21,7 +23,9 @@
       box-sizing: border-box;
     }
   }
+
 }
+
 
 .insert-btn {
   background: #38d9a9;
@@ -44,6 +48,7 @@
     }
 
     transform: translate(-50%, 50%) rotate(45deg);
+
   }
 
   z-index: 5;
@@ -65,4 +70,5 @@
   align-items: center;
   justify-content: center;
   transition: 0.125s ease-in;
+
 }

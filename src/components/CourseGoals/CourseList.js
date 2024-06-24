@@ -1,7 +1,7 @@
-import React from "react";
-// import "./CourseList.css";
-import CourseItem from "./CourseItem";
-import styled from "styled-components";
+import React from 'react';
+// import './CourseList.css';
+import CourseItem from './CourseItem';
+import styled from 'styled-components';
 
 const CourseUl = styled.ul`
   list-style: none;
@@ -13,11 +13,14 @@ const CourseList = ({ items, onDelete }) => {
   return (
     <CourseUl>
       {items.map((item) => (
-        <CourseItem item={item} key={item.id} onDelete={onDelete} />
+        <CourseItem
+          key={item.id}
+          item={item}
+          onDelete={onDelete}
+        />
       ))}
     </CourseUl>
   );
 };
 
 export default CourseList;
-

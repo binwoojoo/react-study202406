@@ -1,12 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
-import Card from "../UI/Card";
-import styles from "./Home.module.css";
-import Button from "../UI/Button";
-import AuthContext from "../../store/auth-context";
+import Card from '../UI/Card';
+import styles from './Home.module.css';
+import Button from '../UI/Button';
+import AuthContext from '../../store/auth-context';
 
 const Home = () => {
+
   const { onLogout } = useContext(AuthContext);
+  // console.log('ctx: ', ctx);
 
   return (
     <Card className={styles.home}>
@@ -14,6 +16,7 @@ const Home = () => {
       <Button onClick={onLogout}>Logout</Button>
     </Card>
   );
+
 };
 
 export default Home;

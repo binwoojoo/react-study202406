@@ -1,29 +1,31 @@
-import React, { useState } from "react";
-import "./CheckBoxStyle.css";
+import React, { useState } from 'react';
+import './CheckBoxStyle.css'; 
 
-const CheckBoxStyle = () => {
+function CheckBoxStyle() {
+
+  // 체크상태를 관리
   const [isChecked, setIsChecked] = useState(false);
 
-  const checkChangeHandler = (e) => {
+  const checkChangeHandler = e => {
     setIsChecked(!isChecked);
   };
-
+  
   return (
     <div className="checkbox-container">
       <input
         type="checkbox"
         id="styled-checkbox"
-        cheked={isChecked}
+        checked={isChecked}
         onChange={checkChangeHandler}
       />
       <label
         htmlFor="styled-checkbox"
-        className={isChecked ? "checked" : "unchecked"}
+        className={isChecked ? 'checked' : 'unchecked'}
       >
         Check me!
       </label>
     </div>
   );
-};
+}
 
 export default CheckBoxStyle;

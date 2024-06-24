@@ -1,6 +1,7 @@
-import React from "react";
-import "./scss/TodoMain.scss";
-import TodoItem from "./TodoItem";
+import React from 'react';
+
+import './scss/TodoMain.scss';
+import TodoItem from './TodoItem';
 
 const TodoMain = ({ todos, onRemove, onCheck }) => {
   return (

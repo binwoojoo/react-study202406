@@ -58,7 +58,7 @@ const TodoTemplate = () => {
 
   return (
     <div className="TodoTemplate">
-      <TodoHeader count={countRestTodo}/>
+      <TodoHeader count={countRestTodo} />
       <TodoMain
         todos={todoList}
         onRemove={removeTodo}

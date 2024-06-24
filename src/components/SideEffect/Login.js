@@ -92,12 +92,10 @@ const Login = ({ onLogin }) => {
   };
 
   const passwordChangeHandler = (e) => {
-    
     dispatchPassword({
       type: 'USER_INPUT',
       val: e.target.value
     });
-
   };
 
   const validateEmailHandler = () => {

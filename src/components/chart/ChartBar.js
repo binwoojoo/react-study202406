@@ -1,14 +1,19 @@
 import React from "react";
+
 import "./ChartBar.css";
 
-const ChartBar = ({ label, monthValue, totalValue }) => {
-    
+const ChartBar = ({ label, currentMonthValue, totalValue }) => {
+
   // 인라인 스타일 객체
-  let barfillHeight = "0%";
+  // const fillStyle = {
+  //   height: '60%'
+  // };
+
+  let barFillHeight = '0%';
 
   if (totalValue > 0) {
-    const percantage = (monthValue / totalValue) * 100;
-    barfillHeight = percantage + "%";
+    const percentage = (currentMonthValue / totalValue) * 100;
+    barFillHeight = percentage + '%';
   }
 
   return (
@@ -16,7 +21,7 @@ const ChartBar = ({ label, monthValue, totalValue }) => {
       <div className="chart-bar__inner">
         <div
           className="chart-bar__fill"
-          style={{ height: barfillHeight }}
+          style={{ height: barFillHeight }}
         ></div>
       </div>
       <div className="chart-bar__label">{label}</div>

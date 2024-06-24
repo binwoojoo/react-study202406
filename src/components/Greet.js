@@ -2,10 +2,11 @@ import React from "react";
 import Card from "./UI/Card";
 
 const Greet = (ccc) => {
+
   return (
-    <Card className="border-green">
+    <Card className='border-green'>
       <h1>
-        Hello!!!!!!!!!!!!!!!!!!
+        Hello REACT!
         {ccc.children}
       </h1>
     </Card>

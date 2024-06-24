@@ -1,3 +1,5 @@
+
+
 // 조각 css
 @mixin content-center {
   display: flex;
@@ -22,7 +24,6 @@
     font-size: 24px;
     margin-right: 20px;
     cursor: pointer;
-
     @include content-center;
 
     &.active {
@@ -42,6 +43,7 @@
     }
   }
 
+
   .remove {
     font-size: 28px;
     cursor: pointer;
@@ -55,3 +57,4 @@
     }
   }
 }
+
