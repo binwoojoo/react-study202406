@@ -7,6 +7,7 @@ import ErrorPage from "./components/RouteExample/pages/ErrorPage";
 // import ProductDetail from "./components/RouteExample/pages/ProductDetail";
 import Events from "./components/RouteExample/pages/Events";
 import EventDetail from "./components/RouteExample/pages/EventDetail";
+import EventLayout from "./components/RouteExample/layout/EventLayout";
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -16,8 +17,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { index: true, element: <Home /> },
-      { path: "events", element: <Events /> },
-      { path: "events/:eventId", element: <EventDetail /> },
+      {
+        path: "events",
+        element: <EventLayout />,
+        children: [
+          { index: true, element: <Events /> },
+          { path: ":eventId", element: <EventDetail /> },
+        ],
+      },
     ],
   },
 ]);
