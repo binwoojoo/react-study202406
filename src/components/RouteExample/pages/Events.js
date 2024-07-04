@@ -1,5 +1,5 @@
 import EventList from "../components/EventList";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, json } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const Events = () => {
@@ -12,7 +12,9 @@ const Events = () => {
   //     console.log(jsonData);
   //     setEventList(jsonData);
   //   });
+
   console.log("event page rendering$$$$$");
+
   return (
     <>
       <h1>Events Page</h1>
@@ -31,14 +33,17 @@ export const loader = async () => {
   // 이 페이지가 열릴 때 자동으로 트리거되어 호출되는 함수
   // 이 함수에는 페이지가 열리자마자 해야할 일을 적을 수 있습니다.
 
-  const response = await fetch("http://localhost:8282/events");
+  const response = await fetch("http://localhost:8282/events?sort=date");
 
   if (response.status !== 200) {
     const errorText = await response.text();
 
-    throw new Response(JSON.stringify({ message: errorText }), {
-      status: response.status,
-    });
+    throw json(
+      { message: errorText },
+      {
+        status: response.status,
+      }
+    );
   }
 
   // const jsonData = await response.json();
