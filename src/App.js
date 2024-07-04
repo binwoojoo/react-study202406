@@ -5,10 +5,15 @@ import RootLayout from "./components/RouteExample/layout/RootLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./components/RouteExample/pages/ErrorPage";
 // import ProductDetail from "./components/RouteExample/pages/ProductDetail";
-import Events, { loader } from "./components/RouteExample/pages/Events";
-import EventDetail from "./components/RouteExample/pages/EventDetail";
+import Events, {
+  loader as eventListLoader,
+} from "./components/RouteExample/pages/Events";
+import EventDetail, {
+  loader as eventDetailLoader,
+} from "./components/RouteExample/pages/EventDetail";
 import EventLayout from "./components/RouteExample/layout/EventLayout";
 import NewEvent from "./components/RouteExample/pages/NewEvent";
+import EditPage from "./components/RouteExample/pages/EditPage";
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -25,9 +30,20 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Events />,
-            loader: loader,
+            loader: eventListLoader,
           },
-          { path: ":eventId", element: <EventDetail /> },
+          {
+            path: ":eventId",
+            loader: eventDetailLoader,
+            // element: <EditPage />,
+            // loader가 children에게 직접적으로 연결되지 않아
+            // EventDetail에서 loader를 사용하지 못하고 있음.
+            id: "event-detail", // loader에게 ID 부여
+            children: [
+              { index: true, element: <EventDetail /> },
+              { path: "edit", element: <EditPage /> },
+            ],
+          },
           { path: "new", element: <NewEvent /> },
         ],
       },
