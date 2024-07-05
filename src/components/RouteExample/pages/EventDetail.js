@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useLoaderData, useParams, useRouteLoaderData } from "react-router-dom";
+import {
+  redirect,
+  useLoaderData,
+  useParams,
+  useRouteLoaderData,
+} from "react-router-dom";
 import EventItem from "../components/EventItem";
 
 const EventDetail = () => {
-
   // 사용 범위가 본인 컴포넌트와 그 하위 컴포넌트(children은 하위가 아님)
 
   // const ev = useLoaderData(); //자신의 로더를 불러옴
@@ -33,4 +37,26 @@ export const loader = async ({ params }) => {
   }
 
   return await response.json();
+};
+
+// action을 트리거하는 방법
+// 실제로 버튼이 있는 곳(EventItem.js)로 이동
+export const action = async ({params}) => {
+  
+  const { eventId: id } = params;
+
+  if (!window.confirm("정말 삭제하시겠습니까?")) return;
+
+  const response = await fetch(
+    `http://localhost:8282/events/${id}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  if (!response.ok) {
+    //... 예외처리
+  }
+
+  return redirect("/events");
 };

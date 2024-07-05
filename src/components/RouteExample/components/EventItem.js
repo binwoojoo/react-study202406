@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "./EvenItem.module.scss";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSubmit } from "react-router-dom";
 
 const EventItem = ({ event }) => {
+  // action함수를 트리거하는 2번째 방법
+  const submit = useSubmit();
+
   const {
     "event-id": id,
     title,
@@ -13,19 +16,11 @@ const EventItem = ({ event }) => {
 
   // const { eventId: id } = useParams();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const deleteHandler = (e) => {
-    if (!window.confirm("정말 삭제하시겠습니까?")) return;
-
-    (async () => {
-      await fetch(`http://localhost:8282/events/${id}`, {
-        method: "DELETE",
-      });
-
-      navigate("/events");
-    })();
-
+    // action을 트리거
+    submit(null, { method: "DELETE" });
   };
 
   return (
