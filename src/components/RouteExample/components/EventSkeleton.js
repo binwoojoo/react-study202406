@@ -1,12 +1,11 @@
 import React from "react";
 import styles from "./EventSkeleton.module.scss";
 
-const EventSkeleton = () => {
+const EventSkeleton = ({ count }) => {
   return (
     <div className={styles.events}>
       <div className={styles.list}>
-        {Array.from(new Array(4)).map(
-            (_, index) => (
+        {Array.from(new Array(count)).map((_, index) => (
           <div className={styles.skeleton} key={index}>
             <div className={styles.imageSkeleton} />
             <div className={styles.contentSkeleton}>
